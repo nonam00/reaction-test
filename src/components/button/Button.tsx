@@ -1,52 +1,49 @@
 import React, {useState} from "react";
-
 import classes from "./Button.module.css";
 
 const StartButton = () => {
-  const [randomDelay, setDelay] = useState();
-  const [lose, setLose] = useState(0);
-  const [status, setStatus] = useState(0);
-  var [time, setTime] = useState();
-  const [result, setResult] = useState(new Date());
+  const [randomDelay, setDelay] = useState(); //delay delay before button appears
+  const [status, setStatus] = useState(0); //defines the current button
+  var [time, setTime] = useState(); //time at which the button appeared
+  const [result, setResult] = useState();//
 
+  //
   const Start = () => {
-    setDelay(Math.floor(Math.random() * 2000) + 1000);
-    setStatus(1);
+    setDelay(Math.floor(Math.random() * 2000) + 1000); //defines the delay before the button appears
+    setStatus(1); //switch to waiting mode for the button to appear
   }
 
-  const Increment = () => {
-    console.log(lose);
-    if(!lose)
-    {
-      setStatus(status+1);
-      setTime(Date.now());
-    }
+  const MainButtonApear = () => { //button appears after a delay
+    setStatus(status+1);
+    setTime(Date.now()); //time at which the button appeared
   };
 
-  const ClickOnTime = () => {
-    setResult(Date.now() - time);
-    setStatus(3);
+  const ClickOnTime = () => { //after pressing the button
+    setResult(Date.now() - time); //determines the time elapsed from appearance to pressing
+    setStatus(3); //switch to results summary mode
   }
-  const Lose = () => {
+
+  //can't implement the functionality
+  /*const Lose = () => {
     setResult('too early');
     setStatus(3);
     setLose(1);
-  }
+  }*/
 
   const Reset = () => {
     setStatus(0);
   }
 
   var ret = {
-    0: <button className={classes.start} onClick={Start}>press to start</button>,
-    1: <button className={classes.wait}>wait until the button turns green</button>,
-    2: <button className={classes.click} onClick={ClickOnTime}>click</button>,
-    3: <button className={classes.result} onClick={Reset}>{result} ms<p>reset</p></button>
+    0: <button className={classes.start} onClick={Start}>press to start</button>, //start button
+    1: <button className={classes.wait}>wait until the button turns green</button>, //waiting mode
+    2: <button className={classes.click} onClick={ClickOnTime}>click</button>, //main button
+    3: <button className={classes.result} onClick={Reset}>{result} ms<p>reset</p></button> //results summary mode + reset button
   }
 
   const returnButt = () => {
     if(status===1) {
-      setTimeout(Increment, randomDelay);
+      setTimeout(MainButtonApear, randomDelay);
     }
     return (ret[status]);
   }
