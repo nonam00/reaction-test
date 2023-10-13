@@ -1,0 +1,25 @@
+.foo{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin-bottom: 1rem;
+  border-top: solid 0.1rem rgb(41, 41, 41);
+  background-color: #030303;
+}
+
+img {
+  width: 2.8em;
+  height: 2.7em;
+  margin: 1rem 1rem 1.5rem 1rem;
+}
+
+.copyrights {
+  background-color: black;
+  color: white;
+  font-size: larger;
+}
