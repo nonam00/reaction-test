@@ -2,10 +2,10 @@ import React, {useState} from "react";
 import classes from "./Button.module.css";
 
 const StartButton = () => {
-  const [randomDelay, setDelay] = useState(); //delay delay before button appears
-  const [status, setStatus] = useState(0); //defines the current button
-  var [time, setTime] = useState(); //time at which the button appeared
-  const [result, setResult] = useState();//
+  const [randomDelay, setDelay] = useState<number>(); //delay delay before button appears
+  const [status, setStatus] = useState<number>(0); //defines the current button
+  var [time, setTime] = useState<number>(); //time at which the button appeared
+  const [result, setResult] = useState<number>();//
 
   //
   const Start = () => {

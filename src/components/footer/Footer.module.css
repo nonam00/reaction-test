@@ -13,12 +13,14 @@
 }
 
 img {
-  width: 2.3em;
-  height: 2.2em;
+  opacity: 0.2;
+  width: 2.2em;
+  height: 2.1em;
   margin: 0.8rem 0.8rem 1.2rem 0.8rem;
 }
 
 .copyrights {
   background-color: black;
   color: white;
+  opacity: 0.2;
 }

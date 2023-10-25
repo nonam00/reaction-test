@@ -21,7 +21,7 @@ button {
   text-transform: uppercase;
 }
 
-.start {
+.start, .result, p {
   background-color: #ece6ff;
   color: black;
 }
@@ -34,14 +34,4 @@ button {
 .click {
   background-color:	#77dd77;
   color: #e8f4ea
-}
-
-.result {
-  background-color: #ece6ff;
-  color: black;
-}
-
-p {
-  background-color: #ece6ff;
-  color: black;
 }
