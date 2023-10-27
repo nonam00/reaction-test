@@ -1,20 +1,17 @@
 import React from 'react';
 
-import StartButton from './components/button/Button.tsx';
-import Footer from './components/footer/Footer.tsx';
+import Button from './components/button/Button';
+import Footer from './components/footer/Footer';
 
-import './App.css';
+import './styles/App.css';
 
-function App() {
-  return (
+const App : React.FC = () =>
     <div className="App">
       <header className="App-header">
         <h1>Reaction App</h1>
       </header>
-      <StartButton/>
+      <Button/>
       <Footer/>
-    </div>
-  );
-}
+    </div>;
 
 export default App;

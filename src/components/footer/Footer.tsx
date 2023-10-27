@@ -1,17 +1,17 @@
 import React from "react";
-import classes from "./Footer.module.css";
+import classes from "../../styles/Footer.module.css";
 
-import github from "./github-mark-white.svg";
-import tg from "./tg-logo.svg";
+import github from "../../styles/images/github-mark-white.svg";
+import tg from "../../styles/images/tg-logo.svg";
 
-const Footer = () => {
+const Footer : React.FC = () => {
   return (
     <footer className={classes.foo}>
       <div>
-        <a href="https://github.com/nonam00/" target="_blank">
+        <a href="https://github.com/nonam00/" target="_blank" rel="noreferrer">
           <img src={github} alt=""/>
         </a>
-        <a href="https://t.me/NoNam0000" target="_blank">
+        <a href="https://t.me/NoNam0000" target="_blank" rel="noreferrer">
           <img src={tg} alt="" />
         </a>
       </div>
