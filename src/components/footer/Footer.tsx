@@ -1,10 +1,10 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import classes from "../../styles/Footer.module.css";
 
 import github from "../../styles/images/github-mark-white.svg";
 import tg from "../../styles/images/tg-logo.svg";
 
-const Footer : React.FC = () => {
+const Footer : React.FC = () : ReactElement => {
   return (
     <footer className={classes.foo}>
       <div>
