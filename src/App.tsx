@@ -5,7 +5,7 @@ import Footer from './components/footer/Footer';
 
 import './styles/App.css';
 
-const App : React.FC = () =>
+const App: React.FC = (): React.JSX.Element =>
     <div className="App">
       <header className="App-header">
         <h1>Reaction App</h1>

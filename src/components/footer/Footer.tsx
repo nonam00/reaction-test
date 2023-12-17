@@ -4,9 +4,9 @@ import classes from "../../styles/Footer.module.css";
 import github from "../../styles/images/github-mark-white.svg";
 import tg from "../../styles/images/tg-logo.svg";
 
-const Footer : React.FC = () : ReactElement => {
+const Footer: React.FC = (): ReactElement => {
   return (
-    <footer className={classes.foo}>
+    <footer className={classes.footer}>
       <div>
         <a href="https://github.com/nonam00/" target="_blank" rel="noreferrer">
           <img src={github} alt=""/>
