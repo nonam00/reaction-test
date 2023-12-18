@@ -5,13 +5,16 @@ import Footer from './components/footer/Footer';
 
 import './styles/App.css';
 
-const App: React.FC = (): React.JSX.Element =>
+const App: React.FC = (): React.JSX.Element => {
+  return (
     <div className="App">
       <header className="App-header">
         <h1>Reaction App</h1>
       </header>
       <Button/>
       <Footer/>
-    </div>;
+    </div>
+  );
+}
 
 export default App;
