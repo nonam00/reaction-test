@@ -1,0 +1,145 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\ReactionTest\\reaction-test\\Backend\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{53865197-30ED-4AFD-B871-F408AAB48C41}|WebApi\\WebApi.csproj|d:\\reactiontest\\reaction-test\\backend\\webapi\\controllers\\reactiontestconroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{53865197-30ED-4AFD-B871-F408AAB48C41}|WebApi\\WebApi.csproj|solutionrelative:webapi\\controllers\\reactiontestconroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{53865197-30ED-4AFD-B871-F408AAB48C41}|WebApi\\WebApi.csproj|d:\\reactiontest\\reaction-test\\backend\\webapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{53865197-30ED-4AFD-B871-F408AAB48C41}|WebApi\\WebApi.csproj|solutionrelative:webapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{53865197-30ED-4AFD-B871-F408AAB48C41}|WebApi\\WebApi.csproj|d:\\reactiontest\\reaction-test\\backend\\webapi\\myjpif.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{53865197-30ED-4AFD-B871-F408AAB48C41}|WebApi\\WebApi.csproj|solutionrelative:webapi\\myjpif.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{53865197-30ED-4AFD-B871-F408AAB48C41}|WebApi\\WebApi.csproj|d:\\reactiontest\\reaction-test\\backend\\webapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{53865197-30ED-4AFD-B871-F408AAB48C41}|WebApi\\WebApi.csproj|solutionrelative:webapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CABE8606-A2E5-4C7A-AA77-96E42BC1E171}|Persistence\\Persistence.csproj|d:\\reactiontest\\reaction-test\\backend\\persistence\\persistence.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{CABE8606-A2E5-4C7A-AA77-96E42BC1E171}|Persistence\\Persistence.csproj|solutionrelative:persistence\\persistence.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{53865197-30ED-4AFD-B871-F408AAB48C41}|WebApi\\WebApi.csproj|d:\\reactiontest\\reaction-test\\backend\\webapi\\webapi.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{53865197-30ED-4AFD-B871-F408AAB48C41}|WebApi\\WebApi.csproj|solutionrelative:webapi\\webapi.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{53865197-30ED-4AFD-B871-F408AAB48C41}|WebApi\\WebApi.csproj|d:\\reactiontest\\reaction-test\\backend\\webapi\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{53865197-30ED-4AFD-B871-F408AAB48C41}|WebApi\\WebApi.csproj|solutionrelative:webapi\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Persistence.csproj",
+              "DocumentMoniker": "D:\\ReactionTest\\reaction-test\\Backend\\Persistence\\Persistence.csproj",
+              "RelativeDocumentMoniker": "Persistence\\Persistence.csproj",
+              "ToolTip": "D:\\ReactionTest\\reaction-test\\Backend\\Persistence\\Persistence.csproj",
+              "RelativeToolTip": "Persistence\\Persistence.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-02-23T18:24:29.23Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ReactionTestConroller.cs",
+              "DocumentMoniker": "D:\\ReactionTest\\reaction-test\\Backend\\WebApi\\Controllers\\ReactionTestConroller.cs",
+              "RelativeDocumentMoniker": "WebApi\\Controllers\\ReactionTestConroller.cs",
+              "ToolTip": "D:\\ReactionTest\\reaction-test\\Backend\\WebApi\\Controllers\\ReactionTestConroller.cs",
+              "RelativeToolTip": "WebApi\\Controllers\\ReactionTestConroller.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAACMAAAAZAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-23T18:19:36.918Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "WebApi.csproj",
+              "DocumentMoniker": "D:\\ReactionTest\\reaction-test\\Backend\\WebApi\\WebApi.csproj",
+              "RelativeDocumentMoniker": "WebApi\\WebApi.csproj",
+              "ToolTip": "D:\\ReactionTest\\reaction-test\\Backend\\WebApi\\WebApi.csproj",
+              "RelativeToolTip": "WebApi\\WebApi.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-02-23T18:18:29.849Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\ReactionTest\\reaction-test\\Backend\\WebApi\\appsettings.json",
+              "RelativeDocumentMoniker": "WebApi\\appsettings.json",
+              "ToolTip": "D:\\ReactionTest\\reaction-test\\Backend\\WebApi\\appsettings.json",
+              "RelativeToolTip": "WebApi\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAEAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-02-23T18:17:10.428Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MyJPIF.cs",
+              "DocumentMoniker": "D:\\ReactionTest\\reaction-test\\Backend\\WebApi\\MyJPIF.cs",
+              "RelativeDocumentMoniker": "WebApi\\MyJPIF.cs",
+              "ToolTip": "D:\\ReactionTest\\reaction-test\\Backend\\WebApi\\MyJPIF.cs",
+              "RelativeToolTip": "WebApi\\MyJPIF.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-23T18:15:53.158Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\ReactionTest\\reaction-test\\Backend\\WebApi\\Program.cs",
+              "RelativeDocumentMoniker": "WebApi\\Program.cs",
+              "ToolTip": "D:\\ReactionTest\\reaction-test\\Backend\\WebApi\\Program.cs",
+              "RelativeToolTip": "WebApi\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-23T18:14:35.284Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "D:\\ReactionTest\\reaction-test\\Backend\\WebApi\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "WebApi\\Properties\\launchSettings.json",
+              "ToolTip": "D:\\ReactionTest\\reaction-test\\Backend\\WebApi\\Properties\\launchSettings.json",
+              "RelativeToolTip": "WebApi\\Properties\\launchSettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-02-23T18:16:57.618Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

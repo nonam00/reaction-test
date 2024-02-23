@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\ReactionTest\\Backend\\Domain\\Domain.csproj": {}
+    "D:\\ReactionTest\\reaction-test\\Backend\\Domain\\Domain.csproj": {}
   },
   "projects": {
-    "D:\\ReactionTest\\Backend\\Domain\\Domain.csproj": {
+    "D:\\ReactionTest\\reaction-test\\Backend\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ReactionTest\\Backend\\Domain\\Domain.csproj",
+        "projectUniqueName": "D:\\ReactionTest\\reaction-test\\Backend\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "D:\\ReactionTest\\Backend\\Domain\\Domain.csproj",
+        "projectPath": "D:\\ReactionTest\\reaction-test\\Backend\\Domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\raisk\\.nuget\\packages\\",
-        "outputPath": "D:\\ReactionTest\\Backend\\Domain\\obj\\",
+        "outputPath": "D:\\ReactionTest\\reaction-test\\Backend\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -38,6 +38,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -59,7 +64,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

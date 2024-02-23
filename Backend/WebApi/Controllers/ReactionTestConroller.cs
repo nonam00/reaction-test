@@ -8,7 +8,7 @@ using Backend.Persistence;
 namespace Backend.WebApi.Controllers
 {
 	[ApiController]
-	[Route("api/results")]
+	[Route("api/[controller]")]
 	public class ReactionTestController(ResultsDbContext context) : ControllerBase
 	{
 		private readonly ResultsDbContext _context = context;
@@ -18,22 +18,33 @@ namespace Backend.WebApi.Controllers
 		{
 			try
 			{
-				int userId = jsonData["userId"].Value<int>();
-				Guid id = Guid.Parse(jsonData["id"].ToString());
-				string username = jsonData["username"].ToString();
-				int reactionTime = jsonData["reactionTime"].Value<int>();
-				DateTime testDate = jsonData["testDate"].Value<DateTime>();
+				//int userId = jsonData["userId"].Value<int>();
+				//Guid id = Guid.Parse(jsonData["id"].ToString());
+				//string username = jsonData["username"].ToString();
+				//int reactionTime = jsonData["reactionTime"].Value<int>();
+				//DateTime testDate = jsonData["testDate"].Value<DateTime>();
 
-				await _context.Results.AddAsync(
-					new Result
-					{
-						UserId = userId,
-						Id = id,
-						Username = username,
-						ReactionTime = reactionTime,
-						TestDate = testDate
-					}
-				);	
+				var newResut = new Result
+				{
+					UserId = jsonData["userId"].Value<int>(),
+					Id = Guid.Parse(jsonData["id"].ToString()),
+					Username = jsonData["username"].ToString(),
+					ReactionTime = jsonData["reactionTime"].Value<int>(),
+					TestDate = jsonData["testDate"].Value<DateTime>()
+				};
+
+				await _context.Results.AddAsync(newResut);	
+
+				//await _context.Results.AddAsync(
+				//	new Result
+				//	{
+				//		UserId = userId,
+				//		Id = id,
+				//		Username = username,
+				//		ReactionTime = reactionTime,
+				//		TestDate = testDate
+				//	}
+				//);
 
 				//await _context.Results.AddAsync(result);
 				await _context.SaveChangesAsync();
@@ -47,7 +58,6 @@ namespace Backend.WebApi.Controllers
 		}
 
 		[HttpGet]
-		[Route("all")]
 		public async Task<ActionResult<List<Result>>> GetAllReactionTestRusults()
 		{
 			try
