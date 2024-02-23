@@ -8,12 +8,12 @@ using Backend.Persistence;
 namespace Backend.WebApi.Controllers
 {
 	[ApiController]
-	[Route("api/[controller]")]
+	[Route("api")]
 	public class ReactionTestController(ResultsDbContext context) : ControllerBase
 	{
 		private readonly ResultsDbContext _context = context;
 
-		[HttpPost]
+		[HttpPost("add")]
 		public async Task<ActionResult> AddReactionTestResult([FromBody] JObject jsonData)
 		{
 			try
@@ -57,8 +57,8 @@ namespace Backend.WebApi.Controllers
 			}
 		}
 
-		[HttpGet]
-		public async Task<ActionResult<List<Result>>> GetAllReactionTestRusults()
+		[HttpGet("get")]
+		public async Task<ActionResult<List<Result>>> GetAllReactionTestResults()
 		{
 			try
 			{
@@ -71,5 +71,23 @@ namespace Backend.WebApi.Controllers
 				return StatusCode(500, $"Error on getting results: {ex.Message}");
 			}
 		}
+
+		[HttpGet("get/{count}")]
+		public async Task<ActionResult<List<Result>>> GetReactionTestResultsByCount(string count)
+		{
+			try
+			{
+				List<Result> results = await _context.Results.ToListAsync();
+
+				var recentResults = results.TakeLast(int.Parse(count));
+
+				return Ok(recentResults);
+			}
+			catch (Exception ex)
+			{
+				return StatusCode(500, $"Error on getting results: {ex.Message}");
+			}
+		}
+
 	}
 }
