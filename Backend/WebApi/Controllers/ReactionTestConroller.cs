@@ -1,17 +1,57 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Linq;
-
 using Backend.Domain;
-using Backend.Persistence;
+using WebApi.Models;
 
 namespace Backend.WebApi.Controllers
 {
-	[ApiController]
-	[Route("api/results")]
-	public class ReactionTestController(ResultsDbContext context) : ControllerBase
+    [ApiController]
+	[Route("api/[controller]")]
+	public class ReactionTestController/*(ResultsDbContext context)*/ : ControllerBase
 	{
-		private readonly ResultsDbContext _context = context;
+		//private readonly ResultsDbContext _context = context;
+		private readonly ResultService _service;
+
+		public ReactionTestController(ResultService service)
+		{
+			_service = service;
+		}
+
+		[HttpGet]
+		public async Task<ActionResult<List<Result>>> GetAllReactionTestRusults()
+		{
+			try
+			{
+				List<Result> results = await _service.GetAsync();
+
+				return Ok(results);
+			}
+			catch (Exception ex)
+			{
+				return StatusCode(500, $"Error on getting results: {ex.Message}");
+			}
+		}
+
+		[HttpGet("{id}")]
+		public async Task<ActionResult<Result>> GetReactionTestResult(string id)
+		{
+			try
+			{
+				Result result = await _service.GetAsync(id);
+
+				if (result is null) 
+				{
+					throw new Exception("Not found");
+				}
+
+				return Ok(result);
+			}
+			catch (Exception ex)
+			{
+				return StatusCode(500, $"Error on getting result: {ex.Message}");
+			}
+		}
+
 
 		[HttpPost]
 		public async Task<ActionResult> AddReactionTestResult([FromBody] JObject jsonData)
@@ -24,21 +64,21 @@ namespace Backend.WebApi.Controllers
 				int reactionTime = jsonData["reactionTime"].Value<int>();
 				DateTime testDate = jsonData["testDate"].Value<DateTime>();
 
-				await _context.Results.AddAsync(
-					new Result
-					{
-						UserId = userId,
-						Id = id,
-						Username = username,
-						ReactionTime = reactionTime,
-						TestDate = testDate
-					}
-				);	
+				var newResult = new Result
+				{
+					UserId = userId,
+					Id = id,
+					Username = username,
+					ReactionTime = reactionTime,
+					TestDate = testDate
+				};
+
+				await _service.CreateAsync(newResult);	
 
 				//await _context.Results.AddAsync(result);
-				await _context.SaveChangesAsync();
+				//await _context.SaveChangesAsync();
 
-				return Ok("Test results was added succesfull");
+				return CreatedAtAction(nameof( GetReactionTestResult), new { id = id }, newResult);
 			}
 			catch (Exception ex)
 			{
@@ -46,20 +86,5 @@ namespace Backend.WebApi.Controllers
 			}
 		}
 
-		[HttpGet]
-		[Route("all")]
-		public async Task<ActionResult<List<Result>>> GetAllReactionTestRusults()
-		{
-			try
-			{
-				List<Result> results = await _context.Results.ToListAsync();
-
-				return Ok(results);
-			}
-			catch (Exception ex)
-			{
-				return StatusCode(500, $"Error on getting results: {ex.Message}");
-			}
-		}
 	}
 }

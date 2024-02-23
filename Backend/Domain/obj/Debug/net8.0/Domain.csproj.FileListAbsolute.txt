@@ -9,3 +9,16 @@ D:\ReactionTest\Backend\Domain\obj\Debug\net8.0\Domain.dll
 D:\ReactionTest\Backend\Domain\obj\Debug\net8.0\refint\Domain.dll
 D:\ReactionTest\Backend\Domain\obj\Debug\net8.0\Domain.pdb
 D:\ReactionTest\Backend\Domain\obj\Debug\net8.0\ref\Domain.dll
+D:\reaction-test\Backend\Domain\bin\Debug\net8.0\Domain.deps.json
+D:\reaction-test\Backend\Domain\bin\Debug\net8.0\Domain.dll
+D:\reaction-test\Backend\Domain\bin\Debug\net8.0\Domain.pdb
+D:\reaction-test\Backend\Domain\obj\Debug\net8.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\reaction-test\Backend\Domain\obj\Debug\net8.0\Domain.AssemblyInfoInputs.cache
+D:\reaction-test\Backend\Domain\obj\Debug\net8.0\Domain.AssemblyInfo.cs
+D:\reaction-test\Backend\Domain\obj\Debug\net8.0\Domain.csproj.CoreCompileInputs.cache
+D:\reaction-test\Backend\Domain\obj\Debug\net8.0\Domain.sourcelink.json
+D:\reaction-test\Backend\Domain\obj\Debug\net8.0\Domain.dll
+D:\reaction-test\Backend\Domain\obj\Debug\net8.0\refint\Domain.dll
+D:\reaction-test\Backend\Domain\obj\Debug\net8.0\Domain.pdb
+D:\reaction-test\Backend\Domain\obj\Debug\net8.0\ref\Domain.dll
+D:\reaction-test\Backend\Domain\obj\Debug\net8.0\Domain.csproj.AssemblyReference.cache
