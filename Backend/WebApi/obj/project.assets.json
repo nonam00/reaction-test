@@ -7838,11 +7838,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\ReactionTest\\reaction-test\\Backend\\WebApi\\WebApi.csproj",
+      "projectUniqueName": "D:\\reaction-test\\reaction-test\\Backend\\WebApi\\WebApi.csproj",
       "projectName": "WebApi",
-      "projectPath": "D:\\ReactionTest\\reaction-test\\Backend\\WebApi\\WebApi.csproj",
+      "projectPath": "D:\\reaction-test\\reaction-test\\Backend\\WebApi\\WebApi.csproj",
       "packagesPath": "C:\\Users\\raisk\\.nuget\\packages\\",
-      "outputPath": "D:\\ReactionTest\\reaction-test\\Backend\\WebApi\\obj\\",
+      "outputPath": "D:\\reaction-test\\reaction-test\\Backend\\WebApi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -7863,8 +7863,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\ReactionTest\\reaction-test\\Backend\\Persistence\\Persistence.csproj": {
-              "projectPath": "D:\\ReactionTest\\reaction-test\\Backend\\Persistence\\Persistence.csproj"
+            "D:\\reaction-test\\reaction-test\\Backend\\Persistence\\Persistence.csproj": {
+              "projectPath": "D:\\reaction-test\\reaction-test\\Backend\\Persistence\\Persistence.csproj"
             }
           }
         }
