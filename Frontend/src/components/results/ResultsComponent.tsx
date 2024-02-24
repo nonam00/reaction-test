@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 
-import { Result } from "./result-type";
+import { Result } from "./resultType";
+import classes from "../../styles/Results.module.css";
 
 const ResultsComponent: React.FC = (): React.ReactElement => {
   const [error, setError] = useState<Error>();
@@ -8,7 +9,7 @@ const ResultsComponent: React.FC = (): React.ReactElement => {
   const [items, setItems] = useState<Array<Result>>([]);
 
   useEffect(() => {
-    fetch("https://localhost:7118/api/get")
+    fetch("https://localhost:7118/api/get/10")
       .then(response => response.json())
       .then(
         (result) => {
@@ -27,14 +28,17 @@ const ResultsComponent: React.FC = (): React.ReactElement => {
   }
   else if(!isLoaded)
   {
-    return <div>loading</div>;
+    return <div>Loading</div>;
   }
   else {
     return (
-      <ul>
+      <ul className={classes.results_list}>
         {items.map(item => (
-          <li key={item.id}>
-            {item.reactionTime}
+          <li key={item.id} className={classes.result_element}>
+            <div>
+              <p>Date: {new Date(item.testDate).toDateString()}</p>
+              <p>Reaction time: {item.reactionTime}ms</p>
+            </div>
           </li>
         ))}
       </ul>

@@ -17,6 +17,8 @@ type ButtonStateReturnType = {
   reset: () => void;
 };
 
+
+
 const ButtonState = (): ButtonStateReturnType => {
   const [status, setStatus] = useState<ButtonStatus>(ButtonStatus.IDLE); //defines the current button
   const [time, setTime] = useState<number>(0); //time at which the button appeared

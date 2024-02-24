@@ -49,7 +49,7 @@ namespace Backend.WebApi.Controllers
 				//await _context.Results.AddAsync(result);
 				await _context.SaveChangesAsync();
 
-				return Ok("Test results was added succesfull");
+				return Ok("Test results was added successful");
 			}
 			catch (Exception ex)
 			{
@@ -77,9 +77,17 @@ namespace Backend.WebApi.Controllers
 		{
 			try
 			{
+				int takeCount = int.Parse(count);
+
+				if(takeCount > _context.Results.Count())
+				{
+					takeCount = _context.Results.Count();
+				}
+
 				List<Result> results = await _context.Results.ToListAsync();
 
-				var recentResults = results.TakeLast(int.Parse(count));
+				var recentResults = results.TakeLast(takeCount)
+										.OrderByDescending(result => result.TestDate);
 
 				return Ok(recentResults);
 			}
