@@ -18,35 +18,21 @@ namespace Backend.WebApi.Controllers
 		{
 			try
 			{
-				//int userId = jsonData["userId"].Value<int>();
-				//Guid id = Guid.Parse(jsonData["id"].ToString());
-				//string username = jsonData["username"].ToString();
-				//int reactionTime = jsonData["reactionTime"].Value<int>();
-				//DateTime testDate = jsonData["testDate"].Value<DateTime>();
-
-				var newResut = new Result
+				bool guidParseCheck = Guid.TryParse(jsonData["id"].ToString(), out Guid id);
+				if (!guidParseCheck)
 				{
-					UserId = jsonData["userId"].Value<int>(),
-					Id = Guid.Parse(jsonData["id"].ToString()),
-					Username = jsonData["username"].ToString(),
+					throw new ArgumentException("Guid parse error");
+				}
+
+				var newResult = new Result
+				{
+					Id = id,
 					ReactionTime = jsonData["reactionTime"].Value<int>(),
 					TestDate = jsonData["testDate"].Value<DateTime>()
 				};
 
-				await _context.Results.AddAsync(newResut);	
+				await _context.Results.AddAsync(newResult);
 
-				//await _context.Results.AddAsync(
-				//	new Result
-				//	{
-				//		UserId = userId,
-				//		Id = id,
-				//		Username = username,
-				//		ReactionTime = reactionTime,
-				//		TestDate = testDate
-				//	}
-				//);
-
-				//await _context.Results.AddAsync(result);
 				await _context.SaveChangesAsync();
 
 				return Ok("Test results was added successful");
@@ -77,9 +63,14 @@ namespace Backend.WebApi.Controllers
 		{
 			try
 			{
-				int takeCount = int.Parse(count);
+				bool takeCountCheck = int.TryParse(count, out int takeCount);
 
-				if(takeCount > _context.Results.Count())
+				if(!takeCountCheck)
+				{
+					throw new ArgumentException("Count parse error");
+				}
+
+				if (takeCount > _context.Results.Count())
 				{
 					takeCount = _context.Results.Count();
 				}

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace ReactionTest.Persistence.Migrations
+namespace Persistence.Migrations
 {
     /// <inheritdoc />
     public partial class init : Migration
@@ -16,8 +16,6 @@ namespace ReactionTest.Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    UserId = table.Column<int>(type: "integer", nullable: false),
-                    Username = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
                     ReactionTime = table.Column<int>(type: "integer", nullable: false),
                     TestDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },

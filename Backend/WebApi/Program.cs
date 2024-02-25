@@ -3,6 +3,7 @@ using Backend.WebApi;
 
 var builder = WebApplication.CreateBuilder(args);
 
+//custom json format processing
 builder.Services.AddControllers(options =>
 {
 	options.InputFormatters.Insert(0, MyJPIF.GetJsonPatchInputFormatter());
@@ -10,9 +11,10 @@ builder.Services.AddControllers(options =>
 
 builder.Services.AddEndpointsApiExplorer();
 
+//addding persistence (data base) level via dependency injection
 builder.Services.AddPersistance(builder.Configuration);
 
-//for local responds
+//setting cors policy for local responds
 builder.Services.AddCors(options =>
 {
 	options.AddPolicy("MyPolicy", policy =>
@@ -23,18 +25,15 @@ builder.Services.AddCors(options =>
 	});
 });
 
-builder.Services.AddMvcCore();
-
-//builder.Services.Configure<MvcOptions>(options =>
-//{
-//	options.Filters.Add(new CorsAuthorizationFilterFactory("MyPolicy"));
-//});
-
 // for tests
-builder.Services.AddSwaggerGen();
+if(builder.Environment.IsDevelopment())
+{
+	builder.Services.AddSwaggerGen();
+}
 
 var app = builder.Build();
 
+// for tests
 if (app.Environment.IsDevelopment())
 {
 	app.UseDeveloperExceptionPage();
@@ -45,8 +44,6 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseRouting();
-
-app.UseAuthorization();
 
 app.MapControllers();
 

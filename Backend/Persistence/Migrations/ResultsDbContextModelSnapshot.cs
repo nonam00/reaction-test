@@ -8,7 +8,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace ReactionTest.Persistence.Migrations
+namespace Persistence.Migrations
 {
     [DbContext(typeof(ResultsDbContext))]
     partial class ResultsDbContextModelSnapshot : ModelSnapshot
@@ -17,12 +17,12 @@ namespace ReactionTest.Persistence.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.14")
+                .HasAnnotation("ProductVersion", "8.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("ReactionTest.Domain.ReactionTestResult", b =>
+            modelBuilder.Entity("Backend.Domain.Result", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -34,20 +34,12 @@ namespace ReactionTest.Persistence.Migrations
                     b.Property<DateTime>("TestDate")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Username")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("Id")
                         .IsUnique();
 
-                    b.ToTable("Results", (string)null);
+                    b.ToTable("Results");
                 });
 #pragma warning restore 612, 618
         }
