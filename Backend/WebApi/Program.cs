@@ -12,7 +12,7 @@ builder.Services.AddControllers(options =>
 builder.Services.AddEndpointsApiExplorer();
 
 //addding persistence (data base) level via dependency injection
-builder.Services.AddPersistance(builder.Configuration);
+builder.Services.AddPersistence(builder.Configuration);
 
 //setting cors policy for local responds
 builder.Services.AddCors(options =>

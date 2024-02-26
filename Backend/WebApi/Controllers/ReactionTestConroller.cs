@@ -18,15 +18,9 @@ namespace Backend.WebApi.Controllers
 		{
 			try
 			{
-				bool guidParseCheck = Guid.TryParse(jsonData["id"].ToString(), out Guid id);
-				if (!guidParseCheck)
-				{
-					throw new ArgumentException("Guid parse error");
-				}
-
 				var newResult = new Result
 				{
-					Id = id,
+					Id = Guid.NewGuid(),
 					ReactionTime = jsonData["reactionTime"].Value<int>(),
 					TestDate = jsonData["testDate"].Value<DateTime>()
 				};
@@ -35,7 +29,7 @@ namespace Backend.WebApi.Controllers
 
 				await _context.SaveChangesAsync();
 
-				return Ok("Test results was added successful");
+				return CreatedAtAction(nameof(GetCertainReactionTestResult), new { id = newResult.Id }, newResult);
 			}
 			catch (Exception ex)
 			{
@@ -43,7 +37,40 @@ namespace Backend.WebApi.Controllers
 			}
 		}
 
-		[HttpGet("get")]
+		[HttpGet("get/certain/{id}")]
+		public async Task<ActionResult<Result>> GetCertainReactionTestResult(string id)
+		{
+			try
+			{
+				bool guidParseCheck = Guid.TryParse(id, out Guid key);
+
+				if(!guidParseCheck)
+				{
+					throw new ArgumentException("Invalid id");
+				}
+
+				Result? result = await _context.Results
+					.FirstOrDefaultAsync(result => result.Id.Equals(key));
+
+				if(result is null) 
+				{
+					throw new ArgumentException("Result not found");
+				}
+
+				return Ok(result);
+			}
+			catch (ArgumentException ex)
+			{
+				return StatusCode(400, $"Error on getting result: {ex.Message}");
+			}
+			catch (Exception ex)
+			{
+				return StatusCode(500, $"Error on getting result: {ex.Message}");
+			}
+		}
+		
+
+		[HttpGet("get/all")]
 		public async Task<ActionResult<List<Result>>> GetAllReactionTestResults()
 		{
 			try
@@ -58,14 +85,15 @@ namespace Backend.WebApi.Controllers
 			}
 		}
 
-		[HttpGet("get/{count}")]
+
+		[HttpGet("get/all/{count}")]
 		public async Task<ActionResult<List<Result>>> GetReactionTestResultsByCount(string count)
 		{
 			try
 			{
 				bool takeCountCheck = int.TryParse(count, out int takeCount);
 
-				if(!takeCountCheck)
+				if(!takeCountCheck || takeCount < 0)
 				{
 					throw new ArgumentException("Count parse error");
 				}
@@ -81,6 +109,10 @@ namespace Backend.WebApi.Controllers
 										.OrderByDescending(result => result.TestDate);
 
 				return Ok(recentResults);
+			}
+			catch (ArgumentException ex)
+			{
+				return StatusCode(400, $"Error on getting result: {ex.Message}");
 			}
 			catch (Exception ex)
 			{

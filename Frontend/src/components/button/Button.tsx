@@ -1,10 +1,13 @@
 import React, {ReactElement} from "react";
+
 import ButtonState, {ButtonStatus} from "./buttonState";
+
 import classes from "../../styles/Button.module.css";
 
 const Button: React.FC = (): ReactElement => {
   const {status, result, start, clickOnTime, lose, reset} = ButtonState();
 
+  const resultDisplay = result? `${result} ms` : 'too early';
   // Define buttons based on the status
   const buttons: Record<ButtonStatus, React.JSX.Element> = {
     //start button
@@ -29,7 +32,7 @@ const Button: React.FC = (): ReactElement => {
     [ButtonStatus.CLICKABLE]:
       <button
         className={classes.click}
-        onClick={clickOnTime}
+        onClick={() => {clickOnTime();}}
       >
           click
       </button>, 
@@ -40,13 +43,13 @@ const Button: React.FC = (): ReactElement => {
         className={classes.result}
         onClick={reset}
       >
-          {result}
+          <p>{resultDisplay}</p>
           <p>reset</p>
       </button> 
   };
 
   return (
-    <div className={classes.button}>
+    <div className={classes.button_component}>
       {buttons[status]}
     </div>
   );
