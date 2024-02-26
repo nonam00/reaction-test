@@ -1,6 +1,6 @@
 import React, {ReactElement} from "react";
 
-import ButtonState, {ButtonStatus} from "./buttonState";
+import ButtonState, {ButtonStatus} from "./ButtonState";
 
 import classes from "../../styles/Button.module.css";
 
