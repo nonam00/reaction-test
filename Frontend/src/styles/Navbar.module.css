@@ -11,10 +11,13 @@
 }
 
 .results {
-  position: fixed;
+  position: absolute;
   display: flex;
+  flex-direction: column;
+  align-items: center;
   right: 100%;
-  transition: left 1s;
+  width: 25%;
+  padding-top: 2rem;
 }
 
 .results_active {
@@ -22,13 +25,12 @@
 }
 
 .close_button {
-  position: absolute;
-  left: 200%;
+  position: fixed;
+  left: 100%;
   width: 75%;
   height: 100%;
-  
   border: none;
-  background-color: rgba(0, 0, 0, 0.432);
+  opacity: 0.5;
 }
 
 .close_button_active {
@@ -36,12 +38,12 @@
 }
 
 .menu_button {
+  cursor: pointer;
   position: absolute;
-  top: 2rem;
   right: 2rem;
-  width: 5%;
-  height: 5%;
-  background-color: white;
+  width: auto;
+  height: auto;
+  border: none;
 }
 
 h1 {
