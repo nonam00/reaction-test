@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 
-import { Result } from "./resultType";
+import { Result } from "../../core/resultType";
 import classes from "../../styles/Results.module.css";
 
 const ResultsComponent: React.FC = (): React.ReactElement => {
-  const [results, setResults] = useState<Array<Result>>([]);
+  const [results, setResults] = useState<Result[]>([]);
 
   useEffect(() => {
     fetch("https://localhost:7118/api/get/all/10")

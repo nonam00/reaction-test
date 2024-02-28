@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Jost&display=swap');
 
 * {
+  overflow-x: hidden;
   margin: 0;
   padding: 0;
   background-color: black;
@@ -9,21 +10,4 @@
 
 .App {
   min-height: 100%;
-}
-
-.App-header {
-  display: flex;
-  margin: 3rem;
-  padding-bottom: 3rem;
-  width: auto;
-  justify-content: center;
-  color: white;
-  border-bottom: solid 0.1rem rgb(41, 41, 41);;
-}
-
-h1 {
-  font-size: 2.8em;
-  display: flex;
-  align-items: center;
-  text-transform: uppercase;
 }
