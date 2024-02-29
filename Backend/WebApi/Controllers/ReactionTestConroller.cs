@@ -1,9 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json.Linq;
 
 using Backend.Domain;
 using Backend.Persistence;
+
+using WebApi.Models;
 
 namespace Backend.WebApi.Controllers
 {
@@ -14,15 +15,15 @@ namespace Backend.WebApi.Controllers
 		private readonly ResultsDbContext _context = context;
 
 		[HttpPost("add")]
-		public async Task<ActionResult> AddReactionTestResult([FromBody] JObject jsonData)
+		public async Task<ActionResult> AddReactionTestResult(ResultDto jsonData)
 		{
 			try
 			{
 				var newResult = new Result
 				{
 					Id = Guid.NewGuid(),
-					ReactionTime = jsonData["reactionTime"].Value<int>(),
-					TestDate = jsonData["testDate"].Value<DateTime>()
+					ReactionTime = jsonData.ReactionTime,
+					TestDate = jsonData.TestDate
 				};
 
 				await _context.Results.AddAsync(newResult);
@@ -42,9 +43,7 @@ namespace Backend.WebApi.Controllers
 		{
 			try
 			{
-				bool guidParseCheck = Guid.TryParse(id, out Guid key);
-
-				if(!guidParseCheck)
+				if(!Guid.TryParse(id, out Guid key))
 				{
 					throw new ArgumentException("Invalid id");
 				}
@@ -91,9 +90,7 @@ namespace Backend.WebApi.Controllers
 		{
 			try
 			{
-				bool takeCountCheck = int.TryParse(count, out int takeCount);
-
-				if(!takeCountCheck || takeCount < 0)
+				if(!int.TryParse(count, out int takeCount) || takeCount < 0)
 				{
 					throw new ArgumentException("Count parse error");
 				}
@@ -103,10 +100,9 @@ namespace Backend.WebApi.Controllers
 					takeCount = _context.Results.Count();
 				}
 
-				List<Result> results = await _context.Results.ToListAsync();
-
-				var recentResults = results.TakeLast(takeCount)
-										.OrderByDescending(result => result.TestDate);
+				List<Result> recentResults = await _context.Results.OrderByDescending(result => result.TestDate)
+																.Take(takeCount)
+																.ToListAsync();
 
 				return Ok(recentResults);
 			}
