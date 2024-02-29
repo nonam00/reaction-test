@@ -1,17 +1,10 @@
 using Backend.Persistence;
-using Backend.WebApi;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//custom json format processing
-builder.Services.AddControllers(options =>
-{
-	options.InputFormatters.Insert(0, MyJPIF.GetJsonPatchInputFormatter());
-}).AddNewtonsoftJson();
+builder.Services.AddMvc();
 
-builder.Services.AddEndpointsApiExplorer();
-
-//addding persistence (data base) level via dependency injection
+//adding persistence (data base) level via dependency injection
 builder.Services.AddPersistence(builder.Configuration);
 
 //setting cors policy for local responds
@@ -27,7 +20,7 @@ builder.Services.AddCors(options =>
 
 // for tests
 if(builder.Environment.IsDevelopment())
-{
+{	
 	builder.Services.AddSwaggerGen();
 }
 
