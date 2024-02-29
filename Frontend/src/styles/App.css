@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost&display=swap');
+
+* {
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  background-color: black;
+  font-family: 'Jost', sans-serif;
+}
+
+.App {
+  min-height: 100%;
+}

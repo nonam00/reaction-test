@@ -1,0 +1,54 @@
+.app_header {
+  display: flex;
+  justify-content: center;
+  margin: 3rem;
+  margin-bottom: 0;
+  padding-bottom: 3rem;
+  width: auto;
+  height: auto;
+  color: white;
+  border-bottom: solid 0.1rem rgb(41, 41, 41);;
+}
+
+.results {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  right: 100%;
+  width: 25%;
+  padding-top: 2rem;
+}
+
+.results_active {
+  right: 0;
+}
+
+.close_button {
+  position: fixed;
+  left: 100%;
+  width: 75%;
+  height: 100%;
+  border: none;
+  opacity: 0.5;
+}
+
+.close_button_active {
+  left: 0;
+}
+
+.menu_button {
+  cursor: pointer;
+  position: absolute;
+  right: 2rem;
+  width: auto;
+  height: auto;
+  border: none;
+}
+
+h1 {
+  font-size: 2.8em;
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+}

@@ -1,0 +1,16 @@
+.results_list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  list-style: none;
+}
+.result_element {
+  color: white;
+  padding-bottom: 1.3vh;
+}
+
+p {
+  background-color: black;
+  color: white;
+}
