@@ -29,35 +29,20 @@ To install and run the application, follow these steps:
 
 2. Navigate to the project directory:
    ```bash
-   cd reaction-test
-   ```
-
-3. Move to the Backend directory:
-   ```bash
-   cd backend/webapi
+   cd reaction-test/Frontend
    ```
    
-4. Run the API:
-   ```bash
-   dotnet run --launch-profile "https"
-   ```
-   
-5. Open another bash window on project directory
-   
-6. Move to the Frontend directory:
-   ```bash
-   cd frontend
-   ```
-7. Install node.js dependencies:
+3. Install node.js dependencies:
    ```bash
    npm i
    ```
-8. Start the application (frontend):
+   
+4. Start the application:
    ```bash
    npm start
    ```
      
-9. Open your web browser and go to http://localhost:3000 to access the application.
+5. Open your web browser and go to http://localhost:3000 to access the application.
     
 ## Usage
 
