@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
+	<!--Will be used until there is a need to use docker-->
+	<ServerGarbageCollection>true</ServerGarbageCollection>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>

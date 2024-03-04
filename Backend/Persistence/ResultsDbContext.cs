@@ -10,10 +10,8 @@ namespace Backend.Persistence
 	{
 		public DbSet<Result> Results { get; set; }
 
-		public ResultsDbContext(DbContextOptions<ResultsDbContext> options) : base(options)
-		{
-			Database.EnsureCreated();
-		}
+		public ResultsDbContext(DbContextOptions<ResultsDbContext> options)
+			: base(options) { }
 
 		protected override void OnModelCreating(ModelBuilder builder)
 		{
