@@ -27,22 +27,32 @@ To install and run the application, follow these steps:
    git clone https://github.com/nonam00/reaction-test
    ```
 
-2. Navigate to the project directory:
+2. Navigate to the project API directory:
    ```bash
-   cd reaction-test/Frontend
+   cd reaction-test/Backend/WebApi
+   ```
+
+3. Generating a certificate for API operation via the https protocol
+   ```bash
+   dotnet dev-certs https --trust
+   ```
+
+4. Navigate to the Frontend directory:
+   ```bash
+   cd ../../Frontend
    ```
    
-3. Install node.js dependencies:
+5. Install node.js dependencies:
    ```bash
    npm i
    ```
    
-4. Start the application:
+6. Start the application:
    ```bash
    npm start
    ```
      
-5. Open your web browser and go to http://localhost:3000 to access the application.
+7. Open your web browser and go to http://localhost:3000 to access the application.
     
 ## Usage
 
