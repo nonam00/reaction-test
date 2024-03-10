@@ -7,15 +7,23 @@ import classes from "../../styles/Navbar.module.css"
 import menuIcon from "../../assets/images/menu.svg";
 
 const Navbar: React.FC = (): React.ReactElement => {
-  const [isOpen, setStatus] = useState<boolean>(false);
-  const [results, setResults] = useState<Result[]>([]);
+  const [isOpen, setStatus] = useState<boolean>(false); // Is navigation bar opened
+  const [results, setResults] = useState<Result[]>([]); // resents results from API
+  const [loading, setLoading] = useState<boolean>(true); // loading status
+  const [error, setError] = useState<Error | undefined>(undefined);
 
-  const updateResults = (): void => {
-    fetch(`https://localhost:7118/api/get/all/${window.innerHeight/91 >> 0}`)
+  const updateResults = async (address: string): Promise<void> => {
+    await fetch(`${address}/api/get/all/${window.innerHeight/91 >> 0}`)
       .then(response => response.json())
       .then(
-        (result) => { setResults(result); },
-        (error) => { console.log(error); }
+        (result: Result[]) => {
+          setLoading(false);
+          setResults(result);
+        },
+        (error: Error) => {
+          setError(error)
+          console.log(error);
+        }
       )
   }
 
@@ -25,7 +33,10 @@ const Navbar: React.FC = (): React.ReactElement => {
 
   const menuButtonClick = (): void => {
     if(!isOpen) {
-      updateResults();
+      updateResults("https://localhost:7118");
+    }
+    else {
+      setLoading(true);
     }
     changeNavStatus();
   }
@@ -45,9 +56,9 @@ const Navbar: React.FC = (): React.ReactElement => {
           alt=""
         />
       </header>
-        <div className={ isOpen? [classes.results, classes.results_active].join(' ') : classes.results }>
-          <ResultsComponent results={results}/>
-        </div>
+      <div className={ isOpen? [classes.results, classes.results_active].join(' ') : classes.results }>
+        {loading? <p>Loading</p> : <ResultsComponent results={results} error={error}/>}
+      </div>
     </>
   );
 }

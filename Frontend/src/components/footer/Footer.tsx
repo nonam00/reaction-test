@@ -15,7 +15,7 @@ const Footer: React.FC = (): ReactElement => {
           <img src={tg} alt="" />
         </a>
       </div>
-      <p className={classes.copyrights}>©2023 Raisky</p>
+      <p className={classes.copyrights}>©2024 Raisky</p>
     </footer>
   );
 };
