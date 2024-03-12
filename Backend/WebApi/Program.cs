@@ -7,6 +7,11 @@ builder.Services.AddMvc();
 //adding persistence (data base) level via dependency injection
 builder.Services.AddPersistence(builder.Configuration);
 
+//disabling logging of all information about the operations of the entity framework to the console
+builder.Logging
+	.AddFilter("Microsoft.EntityFrameworkCore.Database.Command", LogLevel.Warning)
+	.AddFilter("Microsoft.EntityFrameworkCore", LogLevel.Warning);
+
 //setting cors policy for local responds
 builder.Services.AddCors(options =>
 {
@@ -18,7 +23,7 @@ builder.Services.AddCors(options =>
 	});
 });
 
-// for tests
+// for testing https requests
 if(builder.Environment.IsDevelopment())
 {	
 	builder.Services.AddSwaggerGen();
@@ -26,7 +31,7 @@ if(builder.Environment.IsDevelopment())
 
 var app = builder.Build();
 
-// for tests
+// for testing https requests
 if (app.Environment.IsDevelopment())
 {
 	app.UseDeveloperExceptionPage();
