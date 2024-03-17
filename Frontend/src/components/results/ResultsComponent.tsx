@@ -3,9 +3,13 @@ import React from "react";
 import { Result } from "../../core/resultType";
 import classes from "../../styles/Results.module.css";
 
-const ResultsComponent: React.FC<{results: Result[], error?: Error}> = ({results, error}): React.ReactElement => {  
+const ResultsComponent: React.FC<{results: Result[], error?: Error, loadingStatus: boolean}>
+    = ({results, error, loadingStatus}): React.ReactElement => {  
   if(error !== undefined) {
-    return <p>Error</p>;
+    return <p>{error.message}</p>;
+  }
+  if(loadingStatus) {
+    return <p>Loading</p>
   }
   return (
     <ul className={classes.results_list}>

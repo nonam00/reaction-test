@@ -22,16 +22,16 @@ const Navbar: React.FC = (): React.ReactElement => {
         },
         (error: Error) => {
           setError(error)
-          console.log(error);
+          console.log(error.message);
         }
       )
   }
 
-  const changeNavStatus = (): void => {
+  const changeNavStatus = async (): Promise<void> => {
     setStatus(!isOpen);
   }
 
-  const menuButtonClick = (): void => {
+  const menuButtonClick = async (): Promise<void> => {
     if(!isOpen) {
       updateResults("https://localhost:7118");
     }
@@ -57,7 +57,7 @@ const Navbar: React.FC = (): React.ReactElement => {
         />
       </header>
       <div className={ isOpen? [classes.results, classes.results_active].join(' ') : classes.results }>
-        {loading? <p>Loading</p> : <ResultsComponent results={results} error={error}/>}
+        {<ResultsComponent results={results} error={error} loadingStatus={loading}/>}
       </div>
     </>
   );
