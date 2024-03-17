@@ -23,7 +23,7 @@ const ButtonState = (): ButtonStateReturnType => {
   const [result, setResult] = useState<number>(0);//
   const [delay, rememberDelay] = useState<NodeJS.Timeout>();
 
-  const saveResultRequest = (result: number): void => {
+  const saveResultRequest = async (result: number): Promise<void> => {
     const resultData = {
       testDate: new Date(),
       reactionTime: result
@@ -38,11 +38,11 @@ const ButtonState = (): ButtonStateReturnType => {
       body: JSON.stringify(resultData)
     };
     
-    fetch("https://localhost:7118/api/add", requestOptions)
+    await fetch("https://localhost:7118/api/add", requestOptions)
       .then(response => response.json())
       .then(
-        (result) => { console.log(result) },
-        (error) => {console.log(error)}
+        () => {},
+        (error: Error) => {console.log(error.message)}
       );
   }
 

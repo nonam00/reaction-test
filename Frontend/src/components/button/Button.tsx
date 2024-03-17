@@ -32,7 +32,7 @@ const Button: React.FC = (): ReactElement => {
     [ButtonStatus.CLICKABLE]:
       <button
         className={classes.click}
-        onClick={() => {clickOnTime();}}
+        onClick={clickOnTime}
       >
           click
       </button>, 
