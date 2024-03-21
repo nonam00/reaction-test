@@ -14,7 +14,7 @@ const ResultsComponent: React.FC<{results: Result[], error?: Error, loadingStatu
   return (
     <ul className={classes.results_list}>
       {results.map(item => (
-        <li key={item.id} className={classes.result_element}>
+        <li className={classes.result_element}>
           <div>
             <p>Date: {new Date(item.testDate).toLocaleString()}</p>
             <p>Reaction time: {item.reactionTime}ms</p>

@@ -1,3 +1,8 @@
+using System.Reflection;
+
+using Application;
+using Application.Common.Mappings;
+using Application.Interfaces;
 using Backend.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,10 +12,13 @@ builder.Services.AddMvc();
 //adding persistence (data base) level via dependency injection
 builder.Services.AddPersistence(builder.Configuration);
 
-//disabling logging of all information about the operations of the entity framework to the console
-builder.Logging
-	.AddFilter("Microsoft.EntityFrameworkCore.Database.Command", LogLevel.Warning)
-	.AddFilter("Microsoft.EntityFrameworkCore", LogLevel.Warning);
+builder.Services.AddAutoMapper(config =>
+{
+	config.AddProfile(new AssemblyMappingProfile(Assembly.GetExecutingAssembly()));
+	config.AddProfile(new AssemblyMappingProfile(typeof(IResultsDbContext).Assembly));
+});
+
+builder.Services.AddApplication();
 
 //setting cors policy for local responds
 builder.Services.AddCors(options =>
@@ -22,6 +30,11 @@ builder.Services.AddCors(options =>
 			.AllowAnyHeader();
 	});
 });
+
+//disabling logging of all information about the operations of the entity framework to the console
+builder.Logging
+	.AddFilter("Microsoft.EntityFrameworkCore.Database.Command", LogLevel.Warning)
+	.AddFilter("Microsoft.EntityFrameworkCore", LogLevel.Warning);
 
 // for testing https requests
 if(builder.Environment.IsDevelopment())
