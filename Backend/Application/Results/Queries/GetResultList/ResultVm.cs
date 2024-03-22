@@ -1,17 +1,18 @@
-﻿using Backend.Domain;
-using Application.Common.Mappings;
-using AutoMapper;
+﻿using AutoMapper;
 
-namespace Application.Results.Queries.GetResultsList
+using Backend.Domain;
+using Application.Common.Mappings;
+
+namespace Application.Results.Queries.GetResultList
 {
-	public class ResultDto : IMapWith<Result>
+	public class ResultVm : IMapWith<Result>
 	{
 		public int ReactionTime { get; set; }
 		public DateTime TestDate { get; set; }
 
 		public void Mapping(Profile profile)
 		{
-			profile.CreateMap<Result, ResultDto>()
+			profile.CreateMap<Result, ResultVm>()
 				.ForMember(resultDto => resultDto.ReactionTime,
 					opt => opt.MapFrom(note => note.ReactionTime))
 				.ForMember(resultDto => resultDto.TestDate,

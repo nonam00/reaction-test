@@ -13,7 +13,7 @@ const Navbar: React.FC = (): React.ReactElement => {
   const [error, setError] = useState<Error | undefined>(undefined);
 
   const updateResults = async (address: string): Promise<void> => {
-    await fetch(`${address}/api/get/all/${window.innerHeight/91 >> 0}`)
+    await fetch(`${address}/api/get/${window.innerHeight/91 >> 0}`)
       .then(response => response.json())
       .then(
         (result: Result[]) => {
