@@ -2,6 +2,6 @@
 {
 	public class ResultListVm
 	{
-		public IList<ResultVm> Results { get; set; }
+		public IList<ResultVm>? Results { get; set; }
 	}
 }

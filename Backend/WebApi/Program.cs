@@ -7,18 +7,19 @@ using Backend.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddMvc();
-
-//adding persistence (data base) level via dependency injection
-builder.Services.AddPersistence(builder.Configuration);
-
 builder.Services.AddAutoMapper(config =>
 {
 	config.AddProfile(new AssemblyMappingProfile(Assembly.GetExecutingAssembly()));
 	config.AddProfile(new AssemblyMappingProfile(typeof(IResultsDbContext).Assembly));
 });
 
+//adding application level via dependency injection
 builder.Services.AddApplication();
+
+//adding persistence (data base) level via dependency injection
+builder.Services.AddPersistence(builder.Configuration);
+
+builder.Services.AddControllers();
 
 //setting cors policy for local responds
 builder.Services.AddCors(options =>
@@ -52,12 +53,12 @@ if (app.Environment.IsDevelopment())
 	app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
-
 app.UseRouting();
 
-app.MapControllers();
+app.UseHttpsRedirection();
 
 app.UseCors("MyPolicy");
+
+app.MapControllers();
 
 app.Run();

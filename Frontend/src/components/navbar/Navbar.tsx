@@ -16,9 +16,9 @@ const Navbar: React.FC = (): React.ReactElement => {
     await fetch(`${address}/api/get/${window.innerHeight/91 >> 0}`)
       .then(response => response.json())
       .then(
-        (result: Result[]) => {
+        (data: { results: Result[]} ) => {
           setLoading(false);
-          setResults(result);
+          setResults(data.results);
         },
         (error: Error) => {
           setError(error)

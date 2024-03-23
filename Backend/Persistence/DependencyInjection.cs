@@ -18,7 +18,7 @@ namespace Backend.Persistence
 			});
 
 			services.AddScoped<IResultsDbContext>(provider =>
-				provider.GetService<ResultsDbContext>());
+				provider.GetService<ResultsDbContext>()!);
 
 			return services;
 		}
