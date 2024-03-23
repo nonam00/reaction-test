@@ -1,6 +1,7 @@
-﻿using Application.Common.Mappings;
+﻿using AutoMapper;
+
+using Application.Common.Mappings;
 using Application.Results.Commands.CreateResult;
-using AutoMapper;
 
 namespace WebApi.Models
 {
