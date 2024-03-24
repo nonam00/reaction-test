@@ -6,6 +6,8 @@ using Application.Interfaces;
 
 using Backend.Persistence;
 
+using WebApi.Middleware;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddAutoMapper(config =>
@@ -38,7 +40,7 @@ builder.Logging
 	.AddFilter("Microsoft.EntityFrameworkCore.Database.Command", LogLevel.Warning)
 	.AddFilter("Microsoft.EntityFrameworkCore", LogLevel.Warning);
 
-// for testing https requests
+// for testing http requests
 if(builder.Environment.IsDevelopment())
 {	
 	builder.Services.AddSwaggerGen();
@@ -46,7 +48,7 @@ if(builder.Environment.IsDevelopment())
 
 var app = builder.Build();
 
-// for testing https requests
+// for testing http requests
 if (app.Environment.IsDevelopment())
 {
 	app.UseDeveloperExceptionPage();
@@ -54,10 +56,9 @@ if (app.Environment.IsDevelopment())
 	app.UseSwaggerUI();
 }
 
+app.UseCustomExceptionHandler();
 app.UseRouting();
-
 app.UseHttpsRedirection();
-
 app.UseCors("MyPolicy");
 
 app.MapControllers();

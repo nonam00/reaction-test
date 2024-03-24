@@ -14,17 +14,20 @@ const Navbar: React.FC = (): React.ReactElement => {
 
   const updateResults = async (address: string): Promise<void> => {
     await fetch(`${address}/api/get/${window.innerHeight/91 >> 0}`)
-      .then(response => response.json())
-      .then(
-        (data: { results: Result[]} ) => {
+      .then((response) => {
+        if(!response.ok) {
+          throw new Error(`Status code: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data: { results: Result[] }) => {
           setLoading(false);
           setResults(data.results);
-        },
-        (error: Error) => {
-          setError(error)
-          console.log(error.message);
-        }
-      )
+      })
+      .catch((error: Error) => {
+        setLoading(false);
+        setError(error);
+      })
   }
 
   const changeNavStatus = async (): Promise<void> => {
