@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Result } from "../../core/resultType";
 
 export enum ButtonStatus {
   IDLE,
@@ -24,7 +25,7 @@ const ButtonState = (): ButtonStateReturnType => {
   const [delay, rememberDelay] = useState<NodeJS.Timeout>();
 
   const saveResultRequest = async (result: number): Promise<void> => {
-    const resultData = {
+    const resultData: Result = {
       testDate: new Date(),
       reactionTime: result
     };
@@ -68,7 +69,6 @@ const ButtonState = (): ButtonStateReturnType => {
     setResult(resultTime); //determines the time elapsed from appearance to pressing
 
     if(!(resultTime > 60_000)) {
-      console.log(resultTime);
       saveResultRequest(resultTime);
     }
 
