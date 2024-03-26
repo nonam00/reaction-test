@@ -7,7 +7,16 @@ import classes from "../../styles/Button.module.css";
 const Button: React.FC = (): ReactElement => {
   const {status, result, start, clickOnTime, lose, reset} = ButtonState();
 
-  const resultDisplay = result? `${result} ms` : 'too early';
+  let resultDisplay: string;
+  if(!result) {
+    resultDisplay = 'too early';
+  }
+  else if (result > 60_000) {
+    resultDisplay = 'too late';
+  }
+  else {
+    resultDisplay = `${result} ms`;
+  }
   // Define buttons based on the status
   const buttons: Record<ButtonStatus, React.JSX.Element> = {
     //start button

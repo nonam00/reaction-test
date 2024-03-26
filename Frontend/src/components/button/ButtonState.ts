@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Result } from "../../core/resultType";
 
 export enum ButtonStatus {
   IDLE,
@@ -20,11 +21,11 @@ type ButtonStateReturnType = {
 const ButtonState = (): ButtonStateReturnType => {
   const [status, setStatus] = useState<ButtonStatus>(ButtonStatus.IDLE); //defines the current button
   const [time, setTime] = useState<number>(0); //time at which the button appeared
-  const [result, setResult] = useState<number>(0);//
+  const [result, setResult] = useState<number>(0); //
   const [delay, rememberDelay] = useState<NodeJS.Timeout>();
 
   const saveResultRequest = async (result: number): Promise<void> => {
-    const resultData = {
+    const resultData: Result = {
       testDate: new Date(),
       reactionTime: result
     };
@@ -62,11 +63,14 @@ const ButtonState = (): ButtonStateReturnType => {
   // Function to handle the action when the button is clicked at the right time
   const clickOnTime = (): void => {
     if(time === undefined) return;
+
     const resultTime = Date.now() - time;
 
     setResult(resultTime); //determines the time elapsed from appearance to pressing
 
-    saveResultRequest(resultTime);
+    if(!(resultTime > 60_000)) {
+      saveResultRequest(resultTime);
+    }
 
     setStatus(ButtonStatus.RESULT);
   };

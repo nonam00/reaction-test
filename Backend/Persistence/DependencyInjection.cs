@@ -2,6 +2,8 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
+using Application.Interfaces;
+
 namespace Backend.Persistence
 {
 	public static class DependencyInjection
@@ -14,6 +16,9 @@ namespace Backend.Persistence
 			{
 				options.UseNpgsql(connectionString);
 			});
+
+			services.AddScoped<IResultsDbContext>(provider =>
+				provider.GetService<ResultsDbContext>()!);
 
 			return services;
 		}

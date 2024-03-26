@@ -1,16 +1,28 @@
+using System.Reflection;
+
+using Application;
+using Application.Common.Mappings;
+using Application.Interfaces;
+
 using Backend.Persistence;
+
+using WebApi.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddMvc();
+builder.Services.AddAutoMapper(config =>
+{
+	config.AddProfile(new AssemblyMappingProfile(Assembly.GetExecutingAssembly()));
+	config.AddProfile(new AssemblyMappingProfile(typeof(IResultsDbContext).Assembly));
+});
+
+//adding application level via dependency injection
+builder.Services.AddApplication();
 
 //adding persistence (data base) level via dependency injection
 builder.Services.AddPersistence(builder.Configuration);
 
-//disabling logging of all information about the operations of the entity framework to the console
-builder.Logging
-	.AddFilter("Microsoft.EntityFrameworkCore.Database.Command", LogLevel.Warning)
-	.AddFilter("Microsoft.EntityFrameworkCore", LogLevel.Warning);
+builder.Services.AddControllers();
 
 //setting cors policy for local responds
 builder.Services.AddCors(options =>
@@ -23,7 +35,12 @@ builder.Services.AddCors(options =>
 	});
 });
 
-// for testing https requests
+//disabling logging of all information about the operations of the entity framework to the console
+builder.Logging
+	.AddFilter("Microsoft.EntityFrameworkCore.Database.Command", LogLevel.Warning)
+	.AddFilter("Microsoft.EntityFrameworkCore", LogLevel.Warning);
+
+// for testing http requests
 if(builder.Environment.IsDevelopment())
 {	
 	builder.Services.AddSwaggerGen();
@@ -31,7 +48,7 @@ if(builder.Environment.IsDevelopment())
 
 var app = builder.Build();
 
-// for testing https requests
+// for testing http requests
 if (app.Environment.IsDevelopment())
 {
 	app.UseDeveloperExceptionPage();
@@ -39,12 +56,11 @@ if (app.Environment.IsDevelopment())
 	app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
-
+app.UseCustomExceptionHandler();
 app.UseRouting();
+app.UseHttpsRedirection();
+app.UseCors("MyPolicy");
 
 app.MapControllers();
-
-app.UseCors("MyPolicy");
 
 app.Run();
