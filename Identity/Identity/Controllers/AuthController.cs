@@ -30,6 +30,7 @@ namespace Identity.Controllers
 		[HttpPost]
 		public async Task<IActionResult> Login(LoginViewModel viewModel)
 		{
+
 			if(!ModelState.IsValid)
 			{
 				return View(viewModel);
@@ -68,7 +69,7 @@ namespace Identity.Controllers
 		[HttpPost]
 		public async Task<IActionResult> Register(RegisterViewModel viewModel)
 		{
-			if(!ModelState.IsValid)
+            if(!ModelState.IsValid)
 			{
 				return View(viewModel);
 			}
@@ -89,10 +90,10 @@ namespace Identity.Controllers
 		}
 
 		[HttpGet]
-		public async Task<IActionResult> Logout(string logoutID)
+		public async Task<IActionResult> Logout(string logoutId)
 		{
 			await _signInManager.SignOutAsync();
-			var logoutRequest = await _interactionService.GetLogoutContextAsync(logoutID);
+			var logoutRequest = await _interactionService.GetLogoutContextAsync(logoutId);
 			return Redirect(logoutRequest.PostLogoutRedirectUri);
 		}
 	}

@@ -16,6 +16,7 @@ builder.Services.AddDbContext<AuthDbContext>(options =>
 	options.UseNpgsql(connectionString);
 });
 
+
 // IdentityServer login requirements
 builder.Services.AddIdentity<AppUser, IdentityRole>(config =>
 {
@@ -48,25 +49,6 @@ builder.Services.ConfigureApplicationCookie(config =>
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
-
-//Db creation
-using(var scope = app.Services.CreateScope())
-{
-	var serviceProvider = scope.ServiceProvider;
-	try
-	{
-		Console.WriteLine("ODnhfds");
-		var context = serviceProvider.GetRequiredService<AuthDbContext>();
-		DbInitializer.Initialize(context);
-		Console.WriteLine("fsdhisogmp[fdlODnhfds");
-
-	}
-	catch (Exception exception)
-	{
-		var logger = serviceProvider.GetRequiredService<ILogger>();
-		Console.WriteLine("ERROR");
-	}
-}
 
 if (builder.Environment.IsDevelopment())
 {
