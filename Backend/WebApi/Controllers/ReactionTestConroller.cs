@@ -8,6 +8,7 @@ using Application.Results.Queries.GetResultList.GetWholeResultList;
 
 using WebApi.Models;
 using WebApi.Controllers;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Backend.WebApi.Controllers
 {
@@ -17,6 +18,7 @@ namespace Backend.WebApi.Controllers
 		private readonly IMapper _mapper = mapper;
 
 		[HttpPost("add")]
+		[Authorize]
 		public async Task<ActionResult<Guid>> AddReactionTestResult
 			([FromBody]CreateResultDto createResultDto)
 		{
@@ -26,7 +28,8 @@ namespace Backend.WebApi.Controllers
 		}
 
 		[HttpGet("get/all")]
-		public async Task<ActionResult<ResultListVm>> GetAllReactionTestResults()
+        [Authorize]
+        public async Task<ActionResult<ResultListVm>> GetAllReactionTestResults()
 		{
 			var query = new GetWholeResultListQuery { };
 			var vm = await Mediator.Send(query);
@@ -34,7 +37,8 @@ namespace Backend.WebApi.Controllers
 		}
 
 		[HttpGet("get/{quantity}")]
-		public async Task<ActionResult<ResultListVm>> GetReactionTestResultsByCount(int quantity)
+        [Authorize]
+        public async Task<ActionResult<ResultListVm>> GetReactionTestResultsByCount(int quantity)
 		{
 			var query = new GetResultListByQuantityQuery
 			{

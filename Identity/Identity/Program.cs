@@ -16,7 +16,6 @@ builder.Services.AddDbContext<AuthDbContext>(options =>
 	options.UseNpgsql(connectionString);
 });
 
-
 // IdentityServer login requirements
 builder.Services.AddIdentity<AppUser, IdentityRole>(config =>
 {

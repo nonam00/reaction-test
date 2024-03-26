@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Reflection;
 
 using Application;
@@ -5,7 +6,6 @@ using Application.Common.Mappings;
 using Application.Interfaces;
 
 using Backend.Persistence;
-
 using WebApi.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -35,6 +35,19 @@ builder.Services.AddCors(options =>
 	});
 });
 
+builder.Services.AddAuthentication(config =>
+{
+	config.DefaultAuthenticateScheme =
+		JwtBearerDefaults.AuthenticationScheme;
+	config.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+	.AddJwtBearer("Bearer", options =>
+	{
+		options.Authority = "https://localhost:7076";
+		options.Audience = "ResultsWebAPI";
+		options.RequireHttpsMetadata = false;
+	});
+
 //disabling logging of all information about the operations of the entity framework to the console
 builder.Logging
 	.AddFilter("Microsoft.EntityFrameworkCore.Database.Command", LogLevel.Warning)
@@ -60,6 +73,8 @@ app.UseCustomExceptionHandler();
 app.UseRouting();
 app.UseHttpsRedirection();
 app.UseCors("MyPolicy");
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapControllers();
 
