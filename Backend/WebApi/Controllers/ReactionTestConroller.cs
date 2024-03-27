@@ -23,6 +23,7 @@ namespace Backend.WebApi.Controllers
 			([FromBody]CreateResultDto createResultDto)
 		{
 			var command = _mapper.Map<CreateResultCommand>(createResultDto);
+			command.UserId = UserId;
 			var resultId = await Mediator.Send(command);
 			return Ok(resultId);
 		}
@@ -31,7 +32,10 @@ namespace Backend.WebApi.Controllers
         [Authorize]
         public async Task<ActionResult<ResultListVm>> GetAllReactionTestResults()
 		{
-			var query = new GetWholeResultListQuery { };
+			var query = new GetWholeResultListQuery
+			{
+				UserId = UserId
+			};
 			var vm = await Mediator.Send(query);
 			return Ok(vm);
 		}
@@ -42,6 +46,7 @@ namespace Backend.WebApi.Controllers
 		{
 			var query = new GetResultListByQuantityQuery
 			{
+				UserId = UserId,
 				Quantity = quantity
 			};
 

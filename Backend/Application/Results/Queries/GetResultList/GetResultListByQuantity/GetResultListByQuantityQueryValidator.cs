@@ -7,7 +7,8 @@ namespace Application.Results.Queries.GetResultList.GetResultListByQuantity
 	{
 		public GetResultListByQuantityQueryValidator()
 		{
-			RuleFor(command => command.Quantity).GreaterThanOrEqualTo(1);
+			RuleFor(query => query.UserId).NotEqual(Guid.Empty);
+			RuleFor(query => query.Quantity).GreaterThanOrEqualTo(1);
 		}
 	}
 }

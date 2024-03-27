@@ -27,6 +27,7 @@ namespace Application.Results.Queries.GetResultList.GetResultListByQuantity
 			}
 
 			var resultsQuery = await _dbContext.Results
+				.Where(result => result.UserId == request.UserId)
 				.OrderByDescending(result => result.TestDate)
 				.Take(request.Quantity)
 				.ProjectTo<ResultVm>(_mapper.ConfigurationProvider)

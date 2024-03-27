@@ -16,6 +16,7 @@ namespace Application.Results.Commands.CreateResult
 			var result = new Result
 			{
 				Id = Guid.NewGuid(),
+				UserId = request.UserId,
 				ReactionTime = request.ReactionTime,
 				TestDate = request.TestDate
 			};
