@@ -17,8 +17,25 @@ namespace Backend.WebApi.Controllers
 	{
 		private readonly IMapper _mapper = mapper;
 
-		[HttpPost("add")]
+        /// <summary>
+        /// Creates the result
+        /// </summary>
+        /// <remarks>
+        /// Sample request:
+        /// POST /add
+        /// {
+        ///		reactionTime: 100
+        ///		testDate: 2024-01-01\12:00:00+03
+		///	}
+        /// </remarks>
+        /// <param name="createResultDto">CreateResultDto object</param>
+        /// <returns>Returns id (guid)</returns>
+		/// <response code="201">Success</response>
+		/// <response code="401">If the user is unathorized</response>
+        [HttpPost("add")]
 		[Authorize]
+		[ProducesResponseType(StatusCodes.Status201Created)]
+		[ProducesResponseType(StatusCodes.Status401Unauthorized)]	
 		public async Task<ActionResult<Guid>> AddReactionTestResult
 			([FromBody]CreateResultDto createResultDto)
 		{
@@ -28,8 +45,19 @@ namespace Backend.WebApi.Controllers
 			return Ok(resultId);
 		}
 
+		/// <summary>
+		/// Gets whole list of results
+		/// </summary>
+		/// <remarks>
+		/// GET /get/all
+		/// </remarks>
+		/// <returns>Returns ResultListVm</returns>
+		/// <response code="200">Success</response>
+		/// <response code="401">If user is unauthorized</response>
 		[HttpGet("get/all")]
         [Authorize]
+		[ProducesResponseType(StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<ActionResult<ResultListVm>> GetAllReactionTestResults()
 		{
 			var query = new GetWholeResultListQuery
@@ -40,8 +68,20 @@ namespace Backend.WebApi.Controllers
 			return Ok(vm);
 		}
 
-		[HttpGet("get/{quantity}")]
+        /// <summary>
+        /// Gets the specified quantity of results
+        /// </summary>
+        /// <remarks>
+        /// GET /get/10
+        /// </remarks>
+        /// <param name="quantity">Quantity of results</param>
+        /// <returns>Returns ResultListVm</returns>
+        /// <response code="200">Success</response>
+        /// <response code="401">If user is unauthorized</response>
+        [HttpGet("get/{quantity}")]
         [Authorize]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<ActionResult<ResultListVm>> GetReactionTestResultsByCount(int quantity)
 		{
 			var query = new GetResultListByQuantityQuery

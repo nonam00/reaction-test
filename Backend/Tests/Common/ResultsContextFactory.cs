@@ -55,6 +55,5 @@ namespace Tests.Common
             context.Database.EnsureDeleted();
             context.Dispose();
         }
-
     }
 }
