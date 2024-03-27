@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Swashbuckle.AspNetCore.SwaggerGen;
+using Microsoft.Extensions.Options;
 using System.Reflection;
 
 using Application;
@@ -6,7 +8,9 @@ using Application.Common.Mappings;
 using Application.Interfaces;
 
 using Backend.Persistence;
+
 using WebApi.Middleware;
+using WebApi;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -53,15 +57,17 @@ builder.Logging
 	.AddFilter("Microsoft.EntityFrameworkCore.Database.Command", LogLevel.Warning)
 	.AddFilter("Microsoft.EntityFrameworkCore", LogLevel.Warning);
 
+
 // for testing http requests
 if(builder.Environment.IsDevelopment())
-{	
-	builder.Services.AddSwaggerGen(config =>
-	{
-		var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-		var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-		config.IncludeXmlComments(xmlPath);
-	});
+{
+	builder.Services.AddApiVersioning()
+					.AddApiExplorer(options =>
+					{
+						options.GroupNameFormat = "'v'VVV";
+					});
+	builder.Services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
+	builder.Services.AddSwaggerGen();
 }
 
 var app = builder.Build();
@@ -73,8 +79,13 @@ if (app.Environment.IsDevelopment())
 	app.UseSwagger();
 	app.UseSwaggerUI(config =>
 	{
-		config.RoutePrefix = string.Empty;
-		config.SwaggerEndpoint("swagger/v1/swagger.json", "Results API");
+		foreach(var description in app.DescribeApiVersions())
+		{
+			config.SwaggerEndpoint(
+				$"/swagger/{description.GroupName}/swagger.json",
+				description.GroupName.ToUpperInvariant());
+			config.RoutePrefix = string.Empty;
+		}
 	});
 }
 

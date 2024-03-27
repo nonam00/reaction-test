@@ -9,10 +9,13 @@ using Application.Results.Queries.GetResultList.GetWholeResultList;
 using WebApi.Models;
 using WebApi.Controllers;
 using Microsoft.AspNetCore.Authorization;
+using Asp.Versioning;
 
 namespace Backend.WebApi.Controllers
 {
+	[ApiVersionNeutral]
 	[Produces("application/json")]
+	[Route("api/{version:apiVersion}")]
 	public class ReactionTestController(IMapper mapper) : BaseController
 	{
 		private readonly IMapper _mapper = mapper;
