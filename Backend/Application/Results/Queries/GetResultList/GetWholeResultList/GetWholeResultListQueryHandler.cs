@@ -11,6 +11,7 @@ namespace Application.Results.Queries.GetResultList.GetWholeResultList
 	{
 		private readonly IResultsDbContext _dbContext;
 		private readonly IMapper _mapper;
+
 		public GetWholeResultListQueryHandler(IResultsDbContext dbContext, IMapper mapper)
 		{
 			_dbContext = dbContext;
@@ -20,6 +21,7 @@ namespace Application.Results.Queries.GetResultList.GetWholeResultList
 			CancellationToken cancellationToken)
 		{
 			var resultsQuery = await _dbContext.Results
+				.Where(result => result.UserId == request.UserId)
 				.ProjectTo<ResultVm>(_mapper.ConfigurationProvider)
 				.ToListAsync(cancellationToken);
 

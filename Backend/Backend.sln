@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistence", "Persistence\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi", "WebApi\WebApi.csproj", "{53865197-30ED-4AFD-B871-F408AAB48C41}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{F75CE235-F3C2-41F0-A32D-EE643680D846}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{F75CE235-F3C2-41F0-A32D-EE643680D846}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{EA8A5ACF-59CC-462B-BEF6-9714D68F0CCC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{F75CE235-F3C2-41F0-A32D-EE643680D846}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F75CE235-F3C2-41F0-A32D-EE643680D846}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F75CE235-F3C2-41F0-A32D-EE643680D846}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA8A5ACF-59CC-462B-BEF6-9714D68F0CCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA8A5ACF-59CC-462B-BEF6-9714D68F0CCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA8A5ACF-59CC-462B-BEF6-9714D68F0CCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA8A5ACF-59CC-462B-BEF6-9714D68F0CCC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
