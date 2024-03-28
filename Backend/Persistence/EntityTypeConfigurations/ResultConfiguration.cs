@@ -11,7 +11,6 @@ namespace Backend.Persistence.EntityTypeConfigurations
 		{
 			builder.HasKey(result => result.Id);
 			builder.HasIndex(result => result.Id).IsUnique();
-			//builder.Property(result => result.Username).HasMaxLength(100);
 		}
 	}
 }

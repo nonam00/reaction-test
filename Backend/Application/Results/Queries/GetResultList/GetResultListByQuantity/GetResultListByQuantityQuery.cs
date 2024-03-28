@@ -1,7 +1,10 @@
-﻿namespace Application.Results.Queries.GetResultList.GetResultListByQuantity
+﻿using MediatR;
+
+namespace Application.Results.Queries.GetResultList.GetResultListByQuantity
 {
-	public class GetResultListByQuantityQuery : GetResultListQuery
+	public class GetResultListByQuantityQuery : IRequest<ResultListVm>
 	{
-		public int Quantity { get; set; }
+        public Guid UserId { get; set; }
+        public int Quantity { get; set; }
 	}
 }

@@ -10,6 +10,7 @@ The Reaction Test Application is a simple yet effective tool to measure your rea
 
 - Measure and display reaction time
 - Simple and intuitive user interface
+- Authentication and authorization
 - Displays history of recent tests
 
 ## Requirements:
@@ -27,32 +28,27 @@ To install and run the application, follow these steps:
    git clone https://github.com/nonam00/reaction-test
    ```
 
-2. Navigate to the project API directory:
-   ```bash
-   cd reaction-test/Backend/WebApi
-   ```
-
-3. Generating a certificate for API operation via the https protocol
+2. Generate HTTPS certificate for API and Identity Server
    ```bash
    dotnet dev-certs https --trust
    ```
 
-4. Navigate to the Frontend directory:
+3. Launch API and Identity Server
    ```bash
-   cd ../../Frontend
+   dotnet run --launch-profile https
    ```
-   
-5. Install node.js dependencies:
+
+4. Install Node.js dependencies:
    ```bash
    npm i
    ```
    
-6. Start the application:
+5. Launch React app
    ```bash
    npm start
    ```
      
-7. Open your web browser and go to http://localhost:3000 to access the application.
+6. Open your web browser and go to http://localhost:3000 to access the application.
     
 ## Usage
 
