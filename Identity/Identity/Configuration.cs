@@ -33,24 +33,23 @@ namespace Identity
 			{
 				new Client
 				{
-					ClientId = "results-web-api",
+					ClientId = "reaction-test-web-app",
 					ClientName = "Results Web",
 					AllowedGrantTypes = GrantTypes.Code,
 					RequireClientSecret = false,
 					RequirePkce = true,
 					RedirectUris =
 					{
-						"https://.../signin-oidc"
-					},
+                        "http://localhost:3000/signin-oidc"
+                    },
 					AllowedCorsOrigins =
 					{
-						//client side url
-						"https://..."
-					},
+						"http://localhost:3000"
+                    },
 					PostLogoutRedirectUris =
 					{
-						"https://.../signout-oidc"
-					},
+                        "http://localhost:3000/signout-oidc"
+                    },
 					AllowedScopes =
 					{
 						IdentityServerConstants.StandardScopes.OpenId,
