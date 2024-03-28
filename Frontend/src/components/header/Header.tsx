@@ -16,7 +16,7 @@ const Header: FC<{}> = (): ReactElement => {
 
   const getResults = async (): Promise<void> => {
     setLoading(true);
-    const resultListVm: ResultListVm = await apiClient.getAll('1.0');
+    const resultListVm: ResultListVm = await apiClient.getCertain('1.0', window.innerHeight/91 >> 0);
     setResults(resultListVm.results);
     setLoading(false);
   }

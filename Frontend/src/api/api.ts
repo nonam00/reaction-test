@@ -24,8 +24,9 @@ export class Client extends ClientBase {
    */
   getAll(version: string): Promise<ResultListVm> {
       let url_ = this.baseUrl + '/api/{version}/get/all';
-      if (version === undefined || version === null)
+      if (version === undefined || version === null) {
           throw new Error("The parameter 'version' must be defined.");
+      }
       url_ = url_.replace('{version}', encodeURIComponent('' + version));
       url_ = url_.replace(/[?&]$/, '');
 
@@ -98,8 +99,13 @@ export class Client extends ClientBase {
    */
   getCertain(version: string, quantity: number): Promise<ResultListVm> {
     let url_ = this.baseUrl + '/api/{version}/get/{quantity}';
-    if (version === undefined || version === null)
+    if (quantity === undefined || quantity === null) {
+        throw new Error("The parameter 'id' must be defined.");
+    }
+    url_ = url_.replace('{quantity}', encodeURIComponent('' + quantity));
+    if (version === undefined || version === null) {
         throw new Error("The parameter 'version' must be defined.");
+    }
     url_ = url_.replace('{version}', encodeURIComponent('' + version));
     url_ = url_.replace(/[?&]$/, '');
 
