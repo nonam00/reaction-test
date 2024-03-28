@@ -14,21 +14,22 @@ using WebApi;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Addding and configurating AutoMapper
 builder.Services.AddAutoMapper(config =>
 {
 	config.AddProfile(new AssemblyMappingProfile(Assembly.GetExecutingAssembly()));
 	config.AddProfile(new AssemblyMappingProfile(typeof(IResultsDbContext).Assembly));
 });
 
-//adding application level via dependency injection
+// Adding application level via dependency injection
 builder.Services.AddApplication();
 
-//adding persistence (data base) level via dependency injection
+// Adding persistence (data base) level via dependency injection
 builder.Services.AddPersistence(builder.Configuration);
 
 builder.Services.AddControllers();
 
-//setting cors policy for local responds
+// Setting cors policy for local responds
 builder.Services.AddCors(options =>
 {
 	options.AddPolicy("MyPolicy", policy =>
@@ -39,6 +40,7 @@ builder.Services.AddCors(options =>
 	});
 });
 
+// Adding authentication by JWT Tokens
 builder.Services.AddAuthentication(config =>
 {
 	config.DefaultAuthenticateScheme =
@@ -47,32 +49,32 @@ builder.Services.AddAuthentication(config =>
 })
 	.AddJwtBearer("Bearer", options =>
 	{
-		options.Authority = "https://localhost:7076";
+		options.Authority = "https://localhost:7076/";
 		options.Audience = "ResultsWebAPI";
 		options.RequireHttpsMetadata = false;
 	});
 
-//disabling logging of all information about the operations of the entity framework to the console
+// Disabling logging of all information about the operations of the entity framework to the console
 builder.Logging
 	.AddFilter("Microsoft.EntityFrameworkCore.Database.Command", LogLevel.Warning)
 	.AddFilter("Microsoft.EntityFrameworkCore", LogLevel.Warning);
 
+builder.Services.AddApiVersioning()
+				.AddApiExplorer(options =>
+				{
+					options.GroupNameFormat = "'v'VVV";
+				});
 
-// for testing http requests
+// Adding Swagger for testing http requests
 if(builder.Environment.IsDevelopment())
 {
-	builder.Services.AddApiVersioning()
-					.AddApiExplorer(options =>
-					{
-						options.GroupNameFormat = "'v'VVV";
-					});
 	builder.Services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
 	builder.Services.AddSwaggerGen();
 }
 
 var app = builder.Build();
 
-// for testing http requests
+// Adding Swagger for testing http requests
 if (app.Environment.IsDevelopment())
 {
 	app.UseDeveloperExceptionPage();

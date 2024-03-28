@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 using Identity.Models;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace Identity.Controllers
 {
@@ -30,7 +29,6 @@ namespace Identity.Controllers
 		[HttpPost]
 		public async Task<IActionResult> Login(LoginViewModel viewModel)
 		{
-
 			if(!ModelState.IsValid)
 			{
 				return View(viewModel);
@@ -69,7 +67,7 @@ namespace Identity.Controllers
 		[HttpPost]
 		public async Task<IActionResult> Register(RegisterViewModel viewModel)
 		{
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
 			{
 				return View(viewModel);
 			}
