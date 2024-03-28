@@ -7,8 +7,6 @@ namespace Application.Results.Commands.CreateResult
 		public CreateResultCommandValidation()
 		{
 			RuleFor(createResult =>
-				createResult.UserId).NotEqual(Guid.Empty);
-			RuleFor(createResult =>
 				createResult.TestDate).NotEmpty();
 			RuleFor(createResult =>
 				createResult.ReactionTime).GreaterThan(0);

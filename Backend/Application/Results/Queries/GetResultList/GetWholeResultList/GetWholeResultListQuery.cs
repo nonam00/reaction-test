@@ -1,9 +1,7 @@
-﻿using MediatR;
-
-namespace Application.Results.Queries.GetResultList.GetWholeResultList
+﻿namespace Application.Results.Queries.GetResultList.GetWholeResultList
 {
-	public class GetWholeResultListQuery : IRequest<ResultListVm>
+	public class GetWholeResultListQuery : GetResultListQuery
 	{
-        public Guid UserId { get; set; }
-    }
+
+	}
 }

@@ -1,10 +1,9 @@
 import React from "react";
 
-import { ResultVm } from "../../api/api";
-
+import { Result } from "../../core/resultType";
 import classes from "../../styles/Results.module.css";
 
-const ResultsComponent: React.FC<{results?: ResultVm[], error?: Error, loadingStatus: boolean}>
+const ResultsComponent: React.FC<{results: Result[], error?: Error, loadingStatus: boolean}>
     = ({results, error, loadingStatus}): React.ReactElement => {  
   if(error !== undefined) {
     return (
@@ -17,9 +16,13 @@ const ResultsComponent: React.FC<{results?: ResultVm[], error?: Error, loadingSt
   if(loadingStatus) {
     return <p>Loading</p>;
   }
+  if(!results) {
+    return <p>Empty</p>;
+  }
+
   return (
     <ul className={classes.results_list}>
-      {results?.map((item, index) => (
+      {results.map((item, index) => (
         <li key={index} className={classes.result_element}>
           <div>
             <p>Date: {new Date(item.testDate).toLocaleString()}</p>

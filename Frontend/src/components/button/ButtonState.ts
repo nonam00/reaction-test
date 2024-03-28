@@ -1,6 +1,5 @@
 import { useState } from "react";
-
-import { Client, CreateResultDto } from "../../api/api";
+import { Result } from "../../core/resultType";
 
 export enum ButtonStatus {
   IDLE,
@@ -19,13 +18,6 @@ type ButtonStateReturnType = {
   reset: () => void
 };
 
-const apiClient = new Client('https://localhost:7118');
-
-const createResult = async(result: CreateResultDto): Promise<void> => {
-  await apiClient.create('1.0', result);
-  console.log('Result is created.');
-}
-
 const ButtonState = (): ButtonStateReturnType => {
   const [status, setStatus] = useState<ButtonStatus>(ButtonStatus.IDLE); //defines the current button
   const [time, setTime] = useState<number>(0); //time at which the button appeared
@@ -33,13 +25,26 @@ const ButtonState = (): ButtonStateReturnType => {
   const [delay, rememberDelay] = useState<NodeJS.Timeout>();
 
   const saveResultRequest = async (result: number): Promise<void> => {
-    if(result <= 60_000) {
-      const resultData: CreateResultDto = {
-        testDate: new Date(),
-        reactionTime: result
-      };
-      createResult(resultData);
-    }
+    const resultData: Result = {
+      testDate: new Date(),
+      reactionTime: result
+    };
+
+    const requestOptions: RequestInit = {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(resultData)
+    };
+    
+    await fetch("https://localhost:7118/api/add", requestOptions)
+      .then(response => response.json())
+      .then(
+        () => {},
+        (error: Error) => {console.log(error.message)}
+      );
   }
 
   // Function to initiate the waiting state with a random delay
@@ -63,7 +68,9 @@ const ButtonState = (): ButtonStateReturnType => {
 
     setResult(resultTime); //determines the time elapsed from appearance to pressing
 
-    saveResultRequest(resultTime);
+    if(!(resultTime > 60_000)) {
+      saveResultRequest(resultTime);
+    }
 
     setStatus(ButtonStatus.RESULT);
   };

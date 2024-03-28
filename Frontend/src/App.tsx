@@ -1,37 +1,17 @@
-import React, { FC, ReactElement } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React from 'react';
 
-import AuthProvider from './auth/auth-provider';
-import SignoutOidc from './auth/SignoutOidc';
-import SigninOidc from './auth/SigninOidc';
-import userManager, {  loadUser } from './auth/user-service';
-
-import GameComponent from './components/game/GameComponent';
+import Navbar from './components/navbar/Navbar';
+import Button from './components/button/Button';
+import Footer from './components/footer/Footer';
 
 import './styles/App.css';
 
-const App: FC = (): ReactElement => {
-  loadUser();
+const App: React.FC = (): React.JSX.Element => {
   return (
     <div className="App">
-      <AuthProvider userManager={userManager}>
-        <Router>
-          <Routes>
-            <Route
-              path='/'
-              element={<GameComponent />}
-            />
-            <Route
-              path = '/signout-oidc'
-              element={<SignoutOidc />}
-            />
-            <Route
-              path='/signin-oidc'
-              element={<SigninOidc />}
-            />
-          </Routes>
-        </Router>
-      </AuthProvider>
+      <Navbar/>
+      <Button/>
+      <Footer/>
     </div>
   );
 }
