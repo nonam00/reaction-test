@@ -9,6 +9,7 @@ import userManager, {  loadUser } from './auth/user-service';
 import GameComponent from './components/game/GameComponent';
 
 import './styles/App.css';
+import UnauthorizedPage from './components/game/UnauthorizedPage';
 
 const App: FC = (): ReactElement => {
   loadUser();
@@ -28,6 +29,10 @@ const App: FC = (): ReactElement => {
             <Route
               path='/signin-oidc'
               element={<SigninOidc />}
+            />
+            <Route
+              path='/unauthorized'
+              element={<UnauthorizedPage />}
             />
           </Routes>
         </Router>

@@ -15,7 +15,7 @@ export class Client extends ClientBase {
       }
   ) {
       super();
-      this.http = http ? http : <any>window;
+      this.http = http ? http : window as any;
       this.baseUrl = baseUrl !== undefined && baseUrl !== null ? baseUrl : '';
   }
 
@@ -30,7 +30,7 @@ export class Client extends ClientBase {
       url_ = url_.replace('{version}', encodeURIComponent('' + version));
       url_ = url_.replace(/[?&]$/, '');
 
-      let options_ = <RequestInit>{
+      let options_: RequestInit = {
           method: 'GET',
           mode: 'cors',
           headers: {
@@ -59,9 +59,7 @@ export class Client extends ClientBase {
               result200 =
                   _responseText === ''
                       ? null
-                      : <ResultListVm>(
-                            JSON.parse(_responseText, this.jsonParseReviver)
-                        );
+                      : JSON.parse(_responseText, this.jsonParseReviver) as ResultListVm;
               return result200;
           });
       } else if (status === 401) {
@@ -70,9 +68,7 @@ export class Client extends ClientBase {
               result401 =
                   _responseText === ''
                       ? null
-                      : <ProblemDetails>(
-                            JSON.parse(_responseText, this.jsonParseReviver)
-                        );
+                      : JSON.parse(_responseText, this.jsonParseReviver) as ProblemDetails;
               return throwException(
                   'Unauthorized',
                   status,
@@ -91,7 +87,7 @@ export class Client extends ClientBase {
               );
           });
       }
-      return Promise.resolve<ResultListVm>(<any>null);
+      return Promise.resolve<ResultListVm>(null as any);
   }
 
   /**
@@ -109,7 +105,7 @@ export class Client extends ClientBase {
     url_ = url_.replace('{version}', encodeURIComponent('' + version));
     url_ = url_.replace(/[?&]$/, '');
 
-    let options_ = <RequestInit>{
+    let options_: RequestInit = {
         method: 'GET',
         mode: 'cors',
         headers: {
@@ -138,9 +134,7 @@ protected processGetCertain(response: Response): Promise<ResultListVm> {
             result200 =
                 _responseText === ''
                     ? null
-                    : <ResultListVm>(
-                          JSON.parse(_responseText, this.jsonParseReviver)
-                      );
+                    : JSON.parse(_responseText, this.jsonParseReviver) as ResultListVm;
             return result200;
         });
     } else if (status === 401) {
@@ -149,9 +143,7 @@ protected processGetCertain(response: Response): Promise<ResultListVm> {
             result401 =
                 _responseText === ''
                     ? null
-                    : <ProblemDetails>(
-                          JSON.parse(_responseText, this.jsonParseReviver)
-                      );
+                    : JSON.parse(_responseText, this.jsonParseReviver) as ProblemDetails;
             return throwException(
                 'Unauthorized',
                 status,
@@ -170,7 +162,7 @@ protected processGetCertain(response: Response): Promise<ResultListVm> {
             );
         });
     }
-    return Promise.resolve<ResultListVm>(<any>null);
+    return Promise.resolve<ResultListVm>(null as any);
 }
 
   /**
@@ -186,7 +178,7 @@ protected processGetCertain(response: Response): Promise<ResultListVm> {
 
       const content_ = JSON.stringify(body);
 
-      let options_ = <RequestInit>{
+      let options_: RequestInit = {
           body: content_,
           method: 'POST',
           mode: 'cors',
@@ -216,9 +208,7 @@ protected processGetCertain(response: Response): Promise<ResultListVm> {
               result201 =
                   _responseText === ''
                       ? null
-                      : <string>(
-                            JSON.parse(_responseText, this.jsonParseReviver)
-                        );
+                      : JSON.parse(_responseText, this.jsonParseReviver) as string;
               return result201;
           });
       } else if (status === 401) {
@@ -227,9 +217,7 @@ protected processGetCertain(response: Response): Promise<ResultListVm> {
               result401 =
                   _responseText === ''
                       ? null
-                      : <ProblemDetails>(
-                            JSON.parse(_responseText, this.jsonParseReviver)
-                        );
+                      : JSON.parse(_responseText, this.jsonParseReviver) as ProblemDetails;
               return throwException(
                   'Unauthorized',
                   status,
@@ -248,7 +236,7 @@ protected processGetCertain(response: Response): Promise<ResultListVm> {
               );
           });
       }
-      return Promise.resolve<string>(<any>null);
+      return Promise.resolve<string>(null as any);
   }
 }
 

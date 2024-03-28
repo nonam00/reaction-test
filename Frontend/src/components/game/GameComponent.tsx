@@ -1,31 +1,27 @@
-import React, { FC, ReactElement, useEffect, useState } from 'react'
-
+import React, { FC, ReactElement, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
 import Header from '../header/Header';
 import Button from '../button/Button';
 import Footer from '../footer/Footer';
-import UnauthorizedPage from './UnauthorizedPage';
 
 import userManager from '../../auth/user-service';
 
 const GameComponent: FC<{}> = (): ReactElement => {
-  const [isAuth, setAuth] = useState<boolean>(false);
+  const navigate = useNavigate();
 
-  const checkForUserAsync = async(): Promise<void> => {
-    const user =  await userManager.getUser();
-    console.log(user);
-    setAuth(user !== null);
-  }
-
+  // check for completed authenentication in the app 
   useEffect(() => {
-    checkForUserAsync();
-  }, [])
-
-  if(!isAuth) {
-    return (
-      <UnauthorizedPage />
-    );
-  }
-
+    const checkAuthentication = async(): Promise<void> => {
+      const user =  await userManager.getUser();
+      const isAuthenticated = user !== null;
+      // redirection to the page for unauthorized users
+      if(!isAuthenticated) {
+        navigate('/unauthorized');
+      }
+    };
+    checkAuthentication();
+  }, [navigate]);
+  
   return (
     <>
       <Header />

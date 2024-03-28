@@ -16,10 +16,11 @@ builder.Services.AddDbContext<AuthDbContext>(options =>
 	options.UseNpgsql(connectionString);
 });
 
-// IdentityServer login requirements
+// User identity configuration
 builder.Services.AddIdentity<AppUser, IdentityRole>(config =>
 {
-	config.Password.RequiredLength = 4;
+    // User password configuration
+    config.Password.RequiredLength = 4;
 	config.Password.RequireDigit = false;
 	config.Password.RequireNonAlphanumeric = false;
 	config.Password.RequireUppercase = false;
@@ -40,9 +41,11 @@ builder.Services.AddIdentityServer()
 // Cookie configuration
 builder.Services.ConfigureApplicationCookie(config =>
 {
-	config.Cookie.Name = "Identity.Cookie";
 	config.LoginPath = "/Auth/Login";
 	config.LogoutPath = "/Auth/Logout";
+
+	config.Cookie.HttpOnly = true;
+	config.Cookie.SecurePolicy = CookieSecurePolicy.Always;
 });
 
 builder.Services.AddControllersWithViews();
